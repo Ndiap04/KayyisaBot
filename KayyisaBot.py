@@ -234,7 +234,7 @@ def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"' % (update, error))
 
 def main():
-    updater = Updater('2122964144:AAG3kqKs9fkZUU9XB93XD5f5NQZhvZuqfEw')
+    updater = Updater('5070297964:AAHrikCgPuFyhTtgpEEFOxEQaG7vm8qDbT8')
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('shalat', shalat, pass_args=True))
