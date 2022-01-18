@@ -31,6 +31,8 @@ def start(bot, update):
 # Menampilkan jadwal shalat hari ini
 def shalat(bot, update, args):
     try:
+	arg = args(0)
+	addr = args(0:)
 	payload = {'address' : '{}'.format(addr), 'method' : '4'}
 	r = requests.get('http://api.aladhan.com/timingsByAddress', params=payload)
 	data = json.loads(r.content)
