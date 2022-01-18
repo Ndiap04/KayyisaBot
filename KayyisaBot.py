@@ -12,6 +12,9 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+with open('config.json') as f:
+	CONFIG = json.load(f)
+
 # Start
 def start(bot, update):
     update.message.reply_text("Assalamu'alaikum {}!"
@@ -233,8 +236,6 @@ def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"' % (update, error))
 
 def main():
-    updater = Updater('5070297964:AAHrikCgPuFyhTtgpEEFOxEQaG7vm8qDbT8')
-    dp = updater.dispatcher
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('shalat', shalat, pass_args=True))
     dp.add_handler(CommandHandler('quran', quran, pass_args=True))
@@ -251,6 +252,7 @@ def main():
     dp.add_error_handler(error)
 
     updater.start_polling()
+    print("[Ready] Bot is ready. Started polling.")
     updater.idle()
 
 if __name__ == '__main__':
