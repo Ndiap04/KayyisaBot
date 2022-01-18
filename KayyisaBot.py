@@ -28,34 +28,6 @@ def start(bot, update):
 		"\nKirim perintah /setdaily untuk mendapat kiriman ayat pilihan tiap hari"
 		"\nKirim perintah /help untuk bantuan".format(update.message.from_user.first_name))
 
-# Menampilkan jadwal shalat hari ini
-def shalat(bot, update, args):
-    try:
-	arg = args 
-	addr = args
-	payload = {'address' : '{}'.format(addr), 'method' : '4'}
-	r = requests.get('http://api.aladhan.com/timingsByAddress', params=payload)
-	data = json.loads(r.content)
-	#jadwal = data['data']['timings']
-	#for key, value in jadwal.items():
-		#update.message.reply_text('{} {}'.format(key, value))
-	fajr = data['data']['timings']['Fajr']
-	sunrise = data['data']['timings']['Sunrise']
-	dhuhr = data['data']['timings']['Dhuhr']
-	asr = data['data']['timings']['Asr']
-	sunset = data['data']['timings']['Sunset']
-	maghrib = data['data']['timings']['Maghrib']
-	isha = data['data']['timings']['Isha']
-	imsak = data['data']['timings']['Imsak']
-	midnight = data['data']['timings']['Midnight']
-	date = data['data']['date']['readable']
-
-	update.message.reply_text("--Jadwal {}--\nSubuh {}\nMatahari Terbit {}\nDzuhur {}\nAshar {}\nMatahari Terbenam {}\nMaghrib {}\nIsya {}\nImsak {}\nTengah Malam {}\n\nMetode : Umm al-Qura, Makkah\n\nBiasakan shalat di awal waktu, ya!:)".format(date, fajr, sunrise, dhuhr, asr, sunset, maghrib, isha, imsak, midnight))
-
-    except (IndexError, ValueError):
-        update.message.reply_text('Kirim perintah /shalat <wilayah> untuk tahu jadwal shalat di wilayahmu hari ini.'
-'\nContoh :\n/shalat Bekasi\n/shalat Universitas Al Azhar Indonesia')
-
 # Menampilkan ayat Al-Qur'an 
 def quran(bot, update, args):
     try:
